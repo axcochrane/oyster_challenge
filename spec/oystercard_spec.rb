@@ -34,13 +34,19 @@ describe Oystercard do
     end
     describe '#touch_in' do
       it "responds to method call" do
+        oystercard.top_up(2)
         expect(oystercard.touch_in).to respond_to
       end
       it "it changes #in_journey to true" do
+        oystercard.top_up(2)
         oystercard.touch_in
         expect(oystercard).to be_in_journey
       end
+      it "raises error if funds below £1" do
+      oystercard = Oystercard.new
+      expect{oystercard.touch_in}.to raise_error "Funds too low"
     end
+  end
     describe '#touch_out' do
       it "responds to method call" do
         expect(oystercard.touch_out).to respond_to

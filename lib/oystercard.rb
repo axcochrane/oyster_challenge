@@ -3,14 +3,14 @@ class Oystercard
   attr_writer :in_journey
 
   DEFAULT_LIMIT = 90
-  FARE = 2
+  FARE = 1
 
   def initialize (balance = 0, limit = DEFAULT_LIMIT)
     @balance = balance
     @limit = limit
     @in_journey = false
   end
- 
+
   def top_up(amount = 0)
     raise "Top-up is over maximum balance #{self.limit}" if (self.balance + amount > self.limit)
     increment_balance(amount)
@@ -21,6 +21,7 @@ class Oystercard
   end
 
   def touch_in
+    raise "Funds too low" if self.balance < FARE
     self.in_journey = true
   end
 
@@ -41,4 +42,3 @@ class Oystercard
   end
 
 end
-
