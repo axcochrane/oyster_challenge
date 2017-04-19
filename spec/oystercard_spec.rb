@@ -31,6 +31,7 @@ describe Oystercard do
     describe '#touch_in' do
       it "responds to method call" do
         expect(oystercard.touch_in).to respond_to
-      end 
+        expect(oystercard.touch_in).to change { oystercard.journey }.to true
+      end
     end
 end
