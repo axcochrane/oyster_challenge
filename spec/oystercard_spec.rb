@@ -22,11 +22,6 @@ describe Oystercard do
       end
     end
 
-    describe "#deduct" do
-      it "responds to method call" do
-        expect(oystercard.deduct).to respond_to
-      end
-    end
     describe '#in_journey?' do
       it "responds to method call" do
         expect(oystercard.in_journey?).to respond_to

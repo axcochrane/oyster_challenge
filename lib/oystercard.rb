@@ -32,6 +32,7 @@ class Oystercard
 
 
   private
+  attr_writer :deduct 
   attr_writer :balance
 
   def increment_balance(amount)
