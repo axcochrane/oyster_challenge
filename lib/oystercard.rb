@@ -16,10 +16,6 @@ class Oystercard
     increment_balance(amount)
   end
 
-  def deduct
-    self.balance -= FARE
-  end
-
   def touch_in
     raise "Funds too low" if self.balance < FARE
     self.in_journey = true
@@ -27,7 +23,7 @@ class Oystercard
 
   def touch_out
     self.in_journey = false
-    deduct 
+    deduct
   end
 
   def in_journey?
@@ -40,6 +36,10 @@ class Oystercard
 
   def increment_balance(amount)
     self.balance += amount
+  end
+
+  def deduct
+    self.balance -= FARE
   end
 
 end
