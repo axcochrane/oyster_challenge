@@ -27,6 +27,7 @@ class Oystercard
 
   def touch_out
     self.in_journey = false
+    deduct 
   end
 
   def in_journey?
