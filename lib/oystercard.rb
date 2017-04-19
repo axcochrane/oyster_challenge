@@ -1,7 +1,8 @@
 class Oystercard
   attr_reader :limit, :balance
   DEFAULT_LIMIT = 90
-
+  FARE = 2
+  
   def initialize (balance = 0, limit = DEFAULT_LIMIT)
     @balance = balance
     @limit = limit
@@ -13,7 +14,7 @@ class Oystercard
   end
 
   def deduct
-    self.balance -= 2
+    self.balance -= FARE
   end
 
   private
