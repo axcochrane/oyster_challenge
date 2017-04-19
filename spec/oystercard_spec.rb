@@ -55,5 +55,10 @@ describe Oystercard do
         oystercard.touch_out
         expect(oystercard).not_to be_in_journey
       end
+      it "deducts fare amount on touch out" do
+        oystercard.top_up(10)
+        oystercard.touch_in
+        expect { oystercard.touch_out }.to change{oystercard.balance}.by(Oystercard::FARE)
+      end
     end
 end
