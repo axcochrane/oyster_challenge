@@ -14,11 +14,11 @@ describe Oystercard do
 
     describe "#top_up" do
       it "Expects #top_up to change balance" do
-        expect{oystercard.top_up(10)}.to change{ oystercard.balance }.by(10)
+        expect{oystercard.top_up(Oystercard::FARE)}.to change{ oystercard.balance }.by(Oystercard::FARE)
       end
 
       it "should raise error if top up breaches limit (£90)" do
-        expect{oystercard.top_up(91)}.to raise_error "Top-up is over maximum balance #{oystercard.limit}"
+        expect{oystercard.top_up(Oystercard::DEFAULT_LIMIT + 1)}.to raise_error "Top-up is over maximum balance #{oystercard.limit}"
       end
     end
 
@@ -34,11 +34,11 @@ describe Oystercard do
     end
     describe '#touch_in' do
       it "responds to method call" do
-        oystercard.top_up(2)
+        oystercard.top_up(Oystercard::FARE)
         expect(oystercard.touch_in).to respond_to
       end
       it "it changes #in_journey to true" do
-        oystercard.top_up(2)
+        oystercard.top_up(Oystercard::FARE)
         oystercard.touch_in
         expect(oystercard).to be_in_journey
       end
