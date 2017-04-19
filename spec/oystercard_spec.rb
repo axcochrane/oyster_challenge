@@ -12,7 +12,7 @@ describe Oystercard do
       it "Expects #top_up to change balance" do
         expect{oystercard.top_up(10)}.to change{ oystercard.balance }.by(10)
       end
-    
+
       it "should raise error if top up breaches limit (£90)" do
         expect{oystercard.top_up(91)}.to raise_error "Top-up is over maximum balance #{oystercard.limit}"
       end
@@ -23,6 +23,9 @@ describe Oystercard do
         expect(oystercard.deduct).to respond_to
       end
     end
+    describe '#in_journey?' do
+      it "responds to method call" do
+        expect(oystercard.journey?).to respond_to
+      end
+    end
 end
-
-        
