@@ -6,6 +6,11 @@ describe Oystercard do
   it 'is initially not in a journey' do
     expect(subject).not_to be_in_journey
   end
+  let(:station) { double :station }
+  it 'stores the entry station' do
+    subject.touch_in(station)
+    expect(subject.entry_station).to eq station
+  end
     describe "#balance" do
       it "should return 0 balance" do
         expect(oystercard.balance).to eq(0)
