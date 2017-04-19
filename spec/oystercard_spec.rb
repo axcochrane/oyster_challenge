@@ -35,7 +35,6 @@ describe Oystercard do
       end
     end
     describe '#touch_in' do
-
       it "it changes #in_journey to true" do
         oystercard.top_up(Oystercard::FARE)
         oystercard.touch_in(station)
@@ -48,16 +47,21 @@ describe Oystercard do
   end
     describe '#touch_out' do
       it "responds to method call" do
-        expect(oystercard.touch_out).to respond_to
+        expect(oystercard.touch_out(station)).to respond_to
       end
       it "it changes #in_journey to false" do
-        oystercard.touch_out
+        oystercard.touch_out(station)
         expect(oystercard).not_to be_in_journey
       end
       it "deducts fare amount on touch out" do
         oystercard.top_up(10)
         oystercard.touch_in(station)
-        expect { oystercard.touch_out }.to change{oystercard.balance}.by(-Oystercard::FARE)
+        expect { oystercard.touch_out(station) }.to change{oystercard.balance}.by(-Oystercard::FARE)
+      end
+      it "stores exit station" do
+      oystercard.top_up(10)
+      oystercard.touch_in(station)
+      expect(oystercard.touch_out(station)).to eq(station)
       end
     end
 end
