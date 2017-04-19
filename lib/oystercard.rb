@@ -1,5 +1,5 @@
 class Oystercard
-  attr_reader :limit, :balance
+  attr_reader :limit, :balance, :entry_station
   attr_writer :in_journey
 
   DEFAULT_LIMIT = 90
@@ -9,6 +9,7 @@ class Oystercard
     @balance = balance
     @limit = limit
     @in_journey = false
+    @entry_station = nil
   end
 
   def top_up(amount = 0)
@@ -16,9 +17,10 @@ class Oystercard
     increment_balance(amount)
   end
 
-  def touch_in
+  def touch_in(station)
     raise "Funds too low" if self.balance < FARE
     self.in_journey = true
+    @entry_station = station
   end
 
   def touch_out

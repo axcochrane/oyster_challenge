@@ -3,11 +3,13 @@ require 'oystercard'
 describe Oystercard do
   subject(:oystercard) { described_class.new }
 
+
   it 'is initially not in a journey' do
     expect(subject).not_to be_in_journey
   end
   let(:station) { double :station }
   it 'stores the entry station' do
+    oystercard.top_up(Oystercard::FARE)
     subject.touch_in(station)
     expect(subject.entry_station).to eq station
   end
@@ -33,18 +35,15 @@ describe Oystercard do
       end
     end
     describe '#touch_in' do
-      it "responds to method call" do
-        oystercard.top_up(Oystercard::FARE)
-        expect(oystercard.touch_in).to respond_to
-      end
+
       it "it changes #in_journey to true" do
         oystercard.top_up(Oystercard::FARE)
-        oystercard.touch_in
+        oystercard.touch_in(station)
         expect(oystercard).to be_in_journey
       end
       it "raises error if funds below £1" do
       oystercard = Oystercard.new
-      expect{oystercard.touch_in}.to raise_error "Funds too low"
+      expect{oystercard.touch_in(station)}.to raise_error "Funds too low"
     end
   end
     describe '#touch_out' do
@@ -57,7 +56,7 @@ describe Oystercard do
       end
       it "deducts fare amount on touch out" do
         oystercard.top_up(10)
-        oystercard.touch_in
+        oystercard.touch_in(station)
         expect { oystercard.touch_out }.to change{oystercard.balance}.by(-Oystercard::FARE)
       end
     end
