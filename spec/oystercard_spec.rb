@@ -36,5 +36,18 @@ describe Oystercard do
       it "responds to method call" do
         expect(oystercard.touch_in).to respond_to
       end
+      it "it changes #in_journey to true" do
+        oystercard.touch_in
+        expect(oystercard).to be_in_journey
+      end
+    end
+    describe '#touch_out' do
+      it "responds to method call" do
+        expect(oystercard.touch_out).to respond_to
+      end
+      it "it changes #in_journey to false" do
+        oystercard.touch_out
+        expect(oystercard).not_to be_in_journey
+      end
     end
 end
