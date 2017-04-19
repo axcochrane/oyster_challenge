@@ -2,6 +2,10 @@ require 'oystercard'
 
 describe Oystercard do
   subject(:oystercard) { described_class.new }
+
+  it 'is initially not in a journey' do
+    expect(subject).not_to be_in_journey
+  end
     describe "#balance" do
       it "should return 0 balance" do
         expect(oystercard.balance).to eq(0)
@@ -25,13 +29,12 @@ describe Oystercard do
     end
     describe '#in_journey?' do
       it "responds to method call" do
-        expect(oystercard.journey?).to respond_to
+        expect(oystercard.in_journey?).to respond_to
       end
     end
     describe '#touch_in' do
       it "responds to method call" do
         expect(oystercard.touch_in).to respond_to
-        expect(oystercard.touch_in).to change { oystercard.journey }.to true
       end
     end
 end

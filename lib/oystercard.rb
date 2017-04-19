@@ -18,9 +18,10 @@ class Oystercard
   end
 
   def touch_in
-  end 
+  end
 
-  def journey?
+  def in_journey?
+    false
   end
 
   private
