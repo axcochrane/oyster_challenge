@@ -28,4 +28,9 @@ describe Oystercard do
         expect(oystercard.journey?).to respond_to
       end
     end
+    describe '#touch_in' do
+      it "responds to method call" do
+        expect(oystercard.touch_in).to respond_to
+      end 
+    end
 end

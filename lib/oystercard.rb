@@ -17,8 +17,11 @@ class Oystercard
     self.balance -= FARE
   end
 
-  def journey?
+  def touch_in
   end 
+
+  def journey?
+  end
 
   private
   attr_writer :balance
